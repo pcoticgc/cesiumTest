@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Use correct character set. -->
+  <meta charset="utf-8">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <!-- Tell IE to use the latest, best version. -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>Subsidencies</title>
+  <!-- The cesium library. -->
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.76/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.76/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+
+  <!-- Style objects css. -->
+  <link rel="stylesheet" href="./styles.css" />
+
+  <link rel="stylesheet" href="./jqueryUi/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.css">
+  <!--The googleChart library.-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript"></script>
+  <!--The jQueryUi library.-->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+  <link rel="shourtcut icon" 
+		href="LogoPcot.ico" 
+		type="image/x-icon">
+</head>
+      <body>
+           <!-- container color legent. -->
+           <div class="legentVelocityColor">
+                <img id="imglegentVelocityColor" src="Llegenda_velocitat.jpg" alt="" /> 			             
+           </div>                  
+           <!-- container chart googleChart. -->          
+           <div id="container_chart_div">
+                  <div id="title_chart_div">
+                        <div id="close_chart" onclick="closeX()">X</div>
+                  </div>
+                  <div id="chart_div"></div>
+           </div>
+           
+           <!-- object cesium. -->
+           <div id="cesiumContainer" class="cesiumContainer"></div>
+                                  
+           <!-- javaScript file. -->
+           <script src="visor3DCambrils_01.js"></script>      
+      </body>
+</html>
