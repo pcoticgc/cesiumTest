@@ -4,6 +4,7 @@ document.getElementById('container_chart_div').style.display="none";
 // Load Dem Catalonia 5 Meters
 var terrain5M = new Cesium.CesiumTerrainProvider(
 {
+	 /* url: 'https://github.com/TNOCS/mbtiles-terrain-server' */
      url: 'https://tilemaps.icgc.cat/terrenys/demextes/'       
 });
 				
@@ -13,7 +14,10 @@ var map =new Cesium.Viewer("cesiumContainer", {
     url: Cesium.IonResource.fromAssetId(1),
   }),
 });
-
+var mapbox = new Cesium.MapboxImageryProvider({
+    mapId: 'mapbox.streets',
+    accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkOGY2OGMxZS1jYmVkLTRjODctYTBhMC0yZTAxNDkzYzE5MjYiLCJpZCI6OTg4LCJpYXQiOjE1MjY1NjE1NjB9.in89Yj8MS_tZStXdSHsVkEUKKFYc-hZSqkAaXt0FRXg'
+});
 	 
 // Cartographic coordinates of the camera	 	 
 var initialPosition = new Cesium.Cartesian3.fromDegrees(1.050, 41.035, 2800.0);
@@ -48,7 +52,8 @@ geocachePromise.then(function(dataSource) {
 var geocacheEntities = dataSource.entities.values;
 
  
-for (var i = 0; i < geocacheEntities.length; i++) {           		 
+for (var i = 0; i < geocacheEntities.length; i++) {  
+	//console.log(geocacheEntities[i].properties.VEL + "datos")
           if(geocacheEntities[i].properties.VEL < -15)
 		  {
 			color =  new Cesium.Color.fromBytes(226,26,28,255); 
@@ -155,7 +160,7 @@ var displacementValues = [];//Array displacement values.
 					 var month = propertyName.substr(5,[2]);
 					 var day = propertyName.substr(7,[2]);
 					 month = month - 1;
-                     console.info(year + " " + month + " Año mes");	
+                     //console.info(year + " " + month + " Año mes");	
                      displacementData.push([new Date(year, month, day), displacementValues[i-9]]);					 
  					}
  				 }
@@ -163,14 +168,15 @@ var displacementValues = [];//Array displacement values.
                   {
                   	return a - b;
                   })
-                  console.info(displacementValues[0] + " valor menor");
-                  console.info(displacementValues[displacementValues.length - 1] + " valor mayor");
+                  //console.info(displacementValues[0] + " valor menor");
+                  //console.info(displacementValues[displacementValues.length - 1] + " valor mayor");
                    					writeInfo(); 								
              }
          }
 		 for (var i = 0; i <  displacementData.length; i++) 
 				{
-                  console.info(displacementData[i] + " Valor fecha y desplazamiento");
+					
+                  //console.info(displacementData[i] + " Valor fecha y desplazamiento");
 				}				 
      }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 	 
@@ -193,20 +199,20 @@ function writeInfo()
 	 
 	 if (min >= -10 && max <= 10)
 			{
-          console.info("entre -10 i 10");
+          //console.info("entre -10 i 10");
 		  valorsGraficaH = [-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10];
 			}
 			else if (!(min >= -10) || !(max <= 10))
 			{
 				max = parseInt(max);
-				 console.info(max + " max");
+				 //console.info(max + " max");
 				 max = parseInt(max/5);
-				 console.info(max + " max");  
+				 //console.info(max + " max");  
 				 max = 5*(max+1);			
 				 min = parseInt(min);
-				 console.info(min + " min");
+				 //console.info(min + " min");
 				 min = parseInt(min/5);
-				 console.info(min + " min"); 
+				 //console.info(min + " min"); 
 				 min = 5*(min+(-1));
 
 				 valorsGraficaH.push(min);
@@ -236,7 +242,7 @@ function writeInfo()
                            valorMin = valorMin-5;
                      }
 				  }				 			  
-		          console.info(valorsGraficaH[0] + "valors");				
+		          //console.info(valorsGraficaH[0] + "valors");				
 			}				
       var chartDiv = document.getElementById('chart_div');
       var data = new google.visualization.DataTable();
